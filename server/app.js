@@ -3,7 +3,7 @@ import createError from 'http-errors';
 import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
-import logger from 'morgan';
+import morgan from 'morgan';
 import indexRouter from '@routes/index';
 import usersRouter from '@routes/users';
 // Import config
@@ -51,7 +51,7 @@ if (env === 'development') {
 // view engine setup
 configTemplateEngine(app);
 
-app.use(logger('dev'));
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
