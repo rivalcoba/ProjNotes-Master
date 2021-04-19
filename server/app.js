@@ -3,6 +3,8 @@ import createError from 'http-errors';
 import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
+// Importando Winston
+import winston from '@s-config/winston';
 import morgan from 'morgan';
 import indexRouter from '@routes/index';
 import usersRouter from '@routes/users';
@@ -50,8 +52,8 @@ if (env === 'development') {
 
 // view engine setup
 configTemplateEngine(app);
-
-app.use(morgan('dev'));
+// Logger Middleware Configuration
+app.use(morgan('dev',{stream : winston.stream}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

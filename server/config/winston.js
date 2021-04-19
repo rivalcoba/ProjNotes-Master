@@ -1,45 +1,58 @@
-import winston from 'winston';
+import winston, { format } from 'winston';
+// Se extraen componentes para crear formato personalizado
+const {combine, timestamp, label, printf} = winston.format;
 import appRoot from 'app-root-path';
+
+// Creando formato personalizado para la consola
+const myFormat = format.combine(
+  format.colorize(),
+  format.timestamp(),
+  format.align(),
+  format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
+);
+
+const myFileFormat = format.combine(
+  format.uncolorize(),
+  format.timestamp(),
+  format.align(),
+  format.json()
+);
 
 // Creando configuraciones
 const options = {
   infoFile: {
     level: 'info',
     filename: `${appRoot}/server/logs/infos.log`,
-    handleExceptions: trSue,
-    json: true,
+    handleExceptions: true,
     maxsize: 5242880, // 5MB
     maxFiles: 5,
-    colorize: false,
+    format: myFileFormat,
   },
   warnFile: {
     level: 'warn',
     filename: `${appRoot}/server/logs/warns.log`,
     handleExceptions: true,
-    json: true,
     maxsize: 5242880, // 5MB
     maxFiles: 5,
-    colorize: false,
+    format: myFileFormat,
   },
   errorFile: {
     level: 'error',
     filename: `${appRoot}/server/logs/errors.log`,
     handleExceptions: true,
-    json: true,
     maxsize: 5242880, // 5MB
     maxFiles: 5,
-    colorize: false,
+    format: myFileFormat,
   },
   console: {
     level: 'debug',
     handleExceptions: true,
-    json: false,
-    colorize: true,
+    format: myFormat,
   },
 };
 
 // Creamos una instanacia del logger
-const logger = new winston.Logger({
+const logger =  winston.createLogger({
   transports: [
     new winston.transports.File(options.infoFile),
     new winston.transports.File(options.warnFile),
