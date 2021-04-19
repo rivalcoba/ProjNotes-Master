@@ -7,7 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('expweb-bp:server');
 var http = require('http');
-
+import winston from '@s-config/winston'
 /**
  * Get port from environment and store in Express.
  */
@@ -65,11 +65,13 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      //console.error(bind + ' requires elevated privileges');
+      winston.error(`Port: ${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      //console.error(bind + ' is already in use');
+      winston.error(`Port: ${bind} is already in use`);
       process.exit(1);
       break;
     default:
@@ -83,8 +85,10 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
+  var host = server.address().address;
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  winston.info(`Escuchando en ${host}/${bind}`);
 }

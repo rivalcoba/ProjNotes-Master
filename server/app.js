@@ -5,6 +5,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 // Importando Winston
 import winston from '@s-config/winston';
+// Importando Morgan
 import morgan from 'morgan';
 import indexRouter from '@routes/index';
 import usersRouter from '@routes/users';
@@ -64,7 +65,8 @@ app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  next(createError(404));
+  winston.error(`404 - ${"Page Not found"} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+  next(createError(404,"Page Not found"));
 });
 
 // error handler
@@ -72,6 +74,9 @@ app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // Registrando en winston
+  winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
 
   // render the error page
   res.status(err.status || 500);

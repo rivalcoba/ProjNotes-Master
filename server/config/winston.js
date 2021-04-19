@@ -7,14 +7,12 @@ import appRoot from 'app-root-path';
 const myFormat = format.combine(
   format.colorize(),
   format.timestamp(),
-  format.align(),
   format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
 );
 
 const myFileFormat = format.combine(
   format.uncolorize(),
   format.timestamp(),
-  format.align(),
   format.json()
 );
 
