@@ -13,7 +13,8 @@
         "alias":{
           "@server" : "./server",
           "@routes" : "./server/routes",
-          "@s-config": "./server/config"
+          "@s-config": "./server/config",
+          "@s-controllers" : "./server/controllers"
         }
       }
     ]

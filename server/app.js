@@ -7,8 +7,8 @@ import cookieParser from 'cookie-parser';
 import winston from '@s-config/winston';
 // Importando Morgan
 import morgan from 'morgan';
-import indexRouter from '@routes/index';
-import usersRouter from '@routes/users';
+// Importando enrutador
+import router from '@routes/router'
 // Import config
 import configTemplateEngine from '@s-config/template-engine.js'
 // Webpack modules
@@ -60,8 +60,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// Agregando rutas
+router.addRoutes(app);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
