@@ -1,7 +1,14 @@
 // URL /
 const index = (req, res) => {
-  res.render('index', { title: 'Express with babel and HRM' });
+  res.render('home/index', { });
 };
+
+// URL /about
+const about = (req, res) => {
+  res.render('home/about',{});
+}
+
 export default {
   index,
+  about,
 };
