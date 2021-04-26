@@ -4,8 +4,18 @@
 <head>
   <title>{{title}}</title>
   <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel='stylesheet' href='/styles/app.css' />
+  {{!-- Iconos de Google --}}
+  <link 
+    href="https://fonts.googleapis.com/icon?family=Material+Icons" 
+    rel="stylesheet">
+  {{!-- Materilize CSS --}}
+  <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  {{!-- Css de la aplicacion --}}
+  <link 
+    rel='stylesheet' 
+    href='/styles/app.css' />
 </head>
 
 <body>
@@ -17,6 +27,8 @@
   </div>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Invocando al bundle -->
+  <script src="./js/bundle.js"></script>
 </body>
 
 </html>
