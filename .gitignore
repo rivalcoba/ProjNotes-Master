@@ -6,3 +6,6 @@ logs
 *.log
 # Ignora el archivo de configuración
 .env
+#ignorando bundle publico
+public/js
+public/styles
