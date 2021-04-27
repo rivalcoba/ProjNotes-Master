@@ -8,9 +8,9 @@ import winston from '@s-config/winston';
 // Importando Morgan
 import morgan from 'morgan';
 // Importando enrutador
-import router from '@routes/router'
+import router from '@routes/router';
 // Import config
-import configTemplateEngine from '@s-config/template-engine.js'
+import configTemplateEngine from '@s-config/template-engine.js';
 // Webpack modules
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -22,7 +22,7 @@ const app = express();
 const env = process.env.NODE_ENV || 'development';
 // Primero entrara en funcionamiento
 if (env === 'development') {
-  console.log('> Executing in Development: Webpack Hot reloading');
+  winston.info('> Executing in Development: Webpack Hot reloading');
   // Agregando la ruta del HMR
   // reload=true:Enable auto reloading when changing JS files or content
   // timeout=1000:Time from disconnecting from server to reconnecting
@@ -48,13 +48,13 @@ if (env === 'development') {
   // Habilitando el "Webpack Hot Middleware"
   app.use(webpackHotMiddleware(compiler));
 } else {
-  console.log('> Executing in Production');
+  winston.info('> Executing in Production');
 }
 
 // view engine setup
 configTemplateEngine(app);
 // Logger Middleware Configuration
-app.use(morgan('dev',{stream : winston.stream}));
+app.use(morgan('dev', { stream: winston.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -65,8 +65,12 @@ router.addRoutes(app);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  winston.error(`404 - ${"Page Not found"} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-  next(createError(404,"Page Not found"));
+  winston.error(
+    `404 - ${'Page Not found'} - ${req.originalUrl} - ${req.method} - ${
+      req.ip
+    }`,
+  );
+  next(createError(404, 'Page Not found'));
 });
 
 // error handler
@@ -76,7 +80,11 @@ app.use((err, req, res) => {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // Registrando en winston
-  winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+  winston.error(
+    `${err.status || 500} - ${err.message} - ${req.originalUrl} - ${
+      req.method
+    } - ${req.ip}`,
+  );
 
   // render the error page
   res.status(err.status || 500);
