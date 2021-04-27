@@ -4,3 +4,5 @@ dist
 # Ignora los logs
 logs
 *.log
+# Ignora el archivo de configuración
+.env
