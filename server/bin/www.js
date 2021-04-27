@@ -77,7 +77,7 @@ function onListening() {
   const addr = server.address();
   const host = server.address().address;
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
-  debug(`Listening on ${ bind}`);
+  debug(`Listening on ${bind}`);
   winston.info(`Escuchando en ${host}/${bind}`);
 }
 
