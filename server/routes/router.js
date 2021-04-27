@@ -1,15 +1,11 @@
-// Importando la clase Router
-import { Router } from 'express';
 // Iportando la ruta de hombe
-import home from '@routes/home'
-// Creando una instancia del enrutador
-const router = new Router();
+import home from '@routes/home';
 
-const addRoutes = (app)=>{
+const addRoutes = (app) => {
   /* GET home page. */
   app.use('/', home);
-}
+};
 
 export default {
-  addRoutes
-}
+  addRoutes,
+};
