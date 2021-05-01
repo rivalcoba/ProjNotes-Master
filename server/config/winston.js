@@ -1,19 +1,30 @@
 import winston, { format } from 'winston';
 // Se extraen componentes para crear formato personalizado
-const {combine, timestamp, label, printf} = winston.format;
+// const { combine, timestamp, label, printf } = winston.format;
 import appRoot from 'app-root-path';
+
+// COLORS
+const colors = {
+  error: 'red',
+  warn: 'yellow',
+  info: 'green',
+  http: 'magenta',
+  debug: 'green',
+};
+
+winston.addColors(colors);
 
 // Creando formato personalizado para la consola
 const myFormat = format.combine(
-  format.colorize(),
+  format.colorize({ all: true }),
   format.timestamp(),
-  format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
+  format.printf((info) => `${info.timestamp} ${info.level}: ${info.message}`),
 );
 
 const myFileFormat = format.combine(
   format.uncolorize(),
   format.timestamp(),
-  format.json()
+  format.json(),
 );
 
 // Creando configuraciones
@@ -50,7 +61,7 @@ const options = {
 };
 
 // Creamos una instanacia del logger
-const logger =  winston.createLogger({
+const logger = winston.createLogger({
   transports: [
     new winston.transports.File(options.infoFile),
     new winston.transports.File(options.warnFile),
@@ -61,7 +72,7 @@ const logger =  winston.createLogger({
 });
 
 logger.stream = {
-  write(message, encoding) {
+  write(message) {
     logger.info(message);
   },
 };

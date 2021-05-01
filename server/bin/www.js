@@ -7,6 +7,7 @@ import debugLib from 'debug';
 import http from 'http';
 import winston from '@s-config/winston';
 import configKeys from '@server/config/configKeys';
+import MongooseODM from '@s-config/odm';
 import app from '../app';
 
 const debug = debugLib('expweb-bp:server');
@@ -81,9 +82,27 @@ function onListening() {
   winston.info(`Escuchando en ${host}/${bind}`);
 }
 
-/**
- * Listen on provided port, on all network interfaces.
- */
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+/*
+  Conectando la base de datos
+*/
+
+// Intenando la conexion
+// Trying to connecto to the datbase
+const mongooseOdm = new MongooseODM(configKeys.databaseUrl);
+(async () => {
+  try {
+    const conectionResult = await mongooseOdm.connect();
+    if (conectionResult) {
+      /**
+       * Listen on provided port, on all network interfaces.
+       */
+      server.listen(port);
+      server.on('error', onError);
+      server.on('listening', onListening);
+    } else {
+      winston.info(`No se inicio el servicio: Debido a falta de base de datos`);
+    }
+  } catch (error) {
+    winston.error(`No se pudo iniciar el servidor: ${error.message}`);
+  }
+})();

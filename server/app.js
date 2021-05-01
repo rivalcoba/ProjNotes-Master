@@ -18,6 +18,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack.dev.config';
 
 const app = express();
+
 // Webpack middleware
 const env = process.env.NODE_ENV || 'development';
 // Primero entrara en funcionamiento
