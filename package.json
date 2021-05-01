@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=production node ./dist/bin/www",
-    "w:d": "NODE_ENV=development babel-watch --watch ./server/views ./server/bin/www",
-    "w:s": "NODE_ENV=development webpack serve --config ./webpack.dev.config.js --mode development",
-    "cleans": "rm -rf dist",
-    "cleanc": "rm -rf public/js && rm -rf public/styles",
-    "b:s": "npm run cleans && babel ./server --out-dir dist --copy-files",
-    "b:c": "npm run cleanc && webpack --config ./webpack.config.js --mode production",
-    "build": "npm run b:c && npm run b:s"
+    "start": "cross-env NODE_ENV=production node ./dist/bin/www",
+    "w:d": "cross-env NODE_ENV=development babel-watch --watch ./server/views ./server/bin/www",
+    "w:s": "cross-env NODE_ENV=development webpack serve --config ./webpack.dev.config.js --mode development",
+    "cleans": "cross-env rm -rf dist",
+    "cleanc": "cross-env rm -rf public/js && rm -rf public/styles",
+    "b:s": "cross-env npm run cleans && babel ./server --out-dir dist --copy-files",
+    "b:c": "cross-env npm run cleanc && webpack --config ./webpack.config.js --mode production",
+    "build": "cross-env npm run b:c && npm run b:s"
   },
   "dependencies": {
     "app-root-path": "^3.0.0",
@@ -39,6 +39,7 @@
     "babel-preset-minify": "^0.5.1",
     "babel-watch": "^7.4.0",
     "core-js": "^3.9.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.0.2",
     "eslint": "^7.21.0",
     "eslint-config-airbnb-base": "^14.2.1",
