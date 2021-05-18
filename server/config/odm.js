@@ -18,12 +18,8 @@ class MongooseODM {
       mongoose.set('useUnifiedTopology', true);
       winston.info(`Conectado DB a: ${this.url}`);
       await mongoose.connect(this.url);
-      winston.info(
-        'Connection to database engine has successfully established ✅',
-      );
       return true;
     } catch (error) {
-      winston.error('error: Algo malo ocurrio con la base de datos ❌');
       return false;
     }
   }

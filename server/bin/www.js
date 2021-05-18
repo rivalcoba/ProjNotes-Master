@@ -86,13 +86,15 @@ function onListening() {
   Conectando la base de datos
 */
 
-// Intenando la conexion
 // Trying to connecto to the datbase
 const mongooseOdm = new MongooseODM(configKeys.databaseUrl);
 (async () => {
   try {
     const conectionResult = await mongooseOdm.connect();
     if (conectionResult) {
+      winston.info(
+        'Connection to database engine has successfully established ✅',
+      );
       /**
        * Listen on provided port, on all network interfaces.
        */
@@ -100,7 +102,9 @@ const mongooseOdm = new MongooseODM(configKeys.databaseUrl);
       server.on('error', onError);
       server.on('listening', onListening);
     } else {
-      winston.info(`No se inicio el servicio: Debido a falta de base de datos`);
+      winston.error(
+        'error: No se pudo establecer conexión con la base de datos ❌',
+      );
     }
   } catch (error) {
     winston.error(`No se pudo iniciar el servidor: ${error.message}`);
