@@ -1,15 +1,43 @@
+<!-- Se crea una estructura Dropdow -->
+<ul id="dropdownMenu" class="dropdown-content">
+  <li><a href="#">
+      <i class="large material-icons" style="margin: 2px;">list</i>
+      Listar Proyectos
+  </a></li>
+  <li class="divider"></li>
+  <li><a href="#">
+    <i class="large material-icons" style="margin: 2px;">add_box</i>
+    Crear Proyecto
+  </a></li>
+</ul>
+
 <nav class="teal darken-4">
   <div class="container">
     <div class="nav-wrapper">
+      <!-- Visulización de navegación en pantalla completa -->
       <a href="/" class="brand-logo">&#128209;ProjNotes</a>
       <ul id="nav" class="right hide-on-med-and-down">
         <li><a href="/">Inicio</a></li>
         <li><a href="/about">Acerca De.</a></li>
+        <!-- Dropdown Trigger -->
+        <li>
+          <a class="dropdown-trigger" href="#!" data-target="dropdownMenu">
+            Dropdown<i class="material-icons right">arrow_drop_down</i></a>
+        </li>
       </ul>
       <!-- Visulización de Navegación para moviles -->
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="sidenav">
         <li><a href="/">Inicio</a></li>
+        <li><a href="#">
+        <i class="large material-icons" style="margin: 2px;">list</i>
+        Listar Proyectos
+        </a></li>
+        <li><a href="#">
+          <i class="large material-icons" style="margin: 2px;">add_box</i>
+          Crear Proyecto
+        </a></li>
+        <li class="divider"></li>
         <li><a href="/about">Acerca De.</a></li>
       </ul>
     </div>
