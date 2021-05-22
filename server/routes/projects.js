@@ -6,11 +6,14 @@ import projectsController from '@s-controllers/projectsController';
 // Creating an instance from the express router
 const router = new Router();
 
-// "/" "/home"
+// "/projects" "/projects/index"
 router.get(['/', '/index'], projectsController.index);
 
-// "/about"
+// "/projects/add"
 router.get('/add', projectsController.add);
+
+// POST "/projects/add"
+router.post('/add', projectsController.addPost);
 
 // Exporting Router
 export default router;

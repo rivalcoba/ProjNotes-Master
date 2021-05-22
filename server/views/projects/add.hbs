@@ -7,7 +7,7 @@
           Agregar Proyecto
         </span>
       </div>
-      <form action="projects/add" method="POST">
+      <form action="/projects/add" method="POST">
         <div class="card-content">
           <div class="input-field">
             <label for="project_name">
@@ -16,6 +16,7 @@
             <input
               placeholder="Ingrese el nombre aqui"
               id="project_name"
+              name="projectName"
               type="text"
               class="validate"
             />
@@ -24,7 +25,7 @@
             <label for="project_description">
               Descripción del Proyecto
             </label>
-            <textarea id="project_description" class="materialize-textarea"></textarea>
+            <textarea id="project_description" name="projectDescription" class="materialize-textarea"></textarea>
           </div>
         </div>
         <div class="card-action">
