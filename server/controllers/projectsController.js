@@ -19,9 +19,7 @@ const addPost = (req, res) => {
   let errorModel = {};
   // Verificando si hay errores
   if (errorData) {
-    // Constructing error object
-    // const errorObject = {};
-    // Using Reduce
+    // Using Reduce for Constructing the errorModel
     errorModel = errorData.inner.reduce((prevVal, currVal) => {
       // Se crea una variable temporar para evitar el error
       // "no-param-reassign"
