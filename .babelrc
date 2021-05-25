@@ -19,7 +19,8 @@
           "@server" : "./server",
           "@routes" : "./server/routes",
           "@s-config": "./server/config",
-          "@s-controllers" : "./server/controllers"
+          "@s-controllers" : "./server/controllers",
+          "@s-models": "./server/models"
         }
       }
     ]

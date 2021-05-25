@@ -1,3 +1,6 @@
+// Importando el modelo
+import ProjectModel from '@s-models/Project';
+
 // "projects/"
 const index = (req, res) => {
   res.send('Listando Proyectos');
@@ -12,11 +15,9 @@ const add = (req, res) => {
 // POST "projects/add"
 const addPost = (req, res) => {
   // Destructuring
-  const { projectName, projectDescription } = req.body;
-  res.status(200).json({
-    projectName,
-    projectDescription,
-  });
+  const { validData: project } = req;
+  // Regresando el objeto validado
+  res.status(200).json(project);
 };
 
 // Exportando el Controlador
