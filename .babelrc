@@ -16,6 +16,7 @@
       {
         "root": ["./"],
         "alias":{
+          "@client" : "./client",
           "@server" : "./server",
           "@routes" : "./server/routes",
           "@s-config": "./server/config",

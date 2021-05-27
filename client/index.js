@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
 import './stylesheets/style.css';
+// Importing script
+import addScripts from '@client/scripts/projects/add';
 
 /* Inicialización de scrips para Materilize Css */
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,3 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     M.Dropdown.init(dropdowns[i]);
   }
 });
+
+// Scripts dedicados
+if (window.location.pathname === '/projects/add') {
+  addScripts();
+}
