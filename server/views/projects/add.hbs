@@ -19,13 +19,20 @@
               name="name"
               type="text"
               class="validate"
+              value="{{project.name}}"
             />
+            {{#if errorModel.nameError}}
+            <span style="color: red;">Error: No ingreso nombre del Proyecto</span>
+            {{/if}}
           </div>
           <div class="input-field">
             <label for="project_description">
               Descripción del Proyecto
             </label>
-            <textarea id="project_description" name="description" class="materialize-textarea"></textarea>
+            <textarea id="project_description" name="description" class="materialize-textarea">{{project.description}}</textarea>
+            {{#if errorModel.descriptionError}}
+            <span style="color: red;">Error: No ingreso la descripción del Proyecto</span>
+            {{/if}}
           </div>
         </div>
         <div class="card-action">
