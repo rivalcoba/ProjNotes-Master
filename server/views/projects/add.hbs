@@ -20,7 +20,11 @@
               type="text"
               class="validate"
               value="{{project.name}}"
+              required
             />
+            <span class="helper-text" 
+            data-error="Debe ingresar nombre del proyecto" 
+            data-success="Correcto"></span>
             {{#if errorModel.nameError}}
             <span style="color: red;">Error: No ingreso nombre del Proyecto</span>
             {{/if}}
@@ -29,7 +33,10 @@
             <label for="project_description">
               Descripción del Proyecto
             </label>
-            <textarea id="project_description" name="description" class="materialize-textarea">{{project.description}}</textarea>
+            <textarea required id="project_description" name="description" class="materialize-textarea validate">{{project.description}}</textarea>
+            <span class="helper-text" 
+            data-error="Debe ingresar una descripción." 
+            data-success="Correcto"></span>
             {{#if errorModel.descriptionError}}
             <span style="color: red;">Error: No ingreso la descripción del Proyecto</span>
             {{/if}}
