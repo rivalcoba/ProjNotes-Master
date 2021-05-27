@@ -22,8 +22,6 @@ const addPost = (req, res) => {
   if (errorData) {
     // Rescatando posible name
     project = errorData.value;
-    console.log(`errorData: ${JSON.stringify(errorData)}`);
-    console.log(`Proyecto: ${JSON.stringify(project)}`);
     // Using Reduce for Constructing the errorModel
     errorModel = errorData.inner.reduce((prevVal, currVal) => {
       // Se crea una variable temporal para evitar el error
@@ -32,9 +30,10 @@ const addPost = (req, res) => {
       newVal[`${currVal.path}Error`] = currVal.message;
       return newVal;
     }, {});
-    return res.render('projects/add', { project, errorModel });
+    // return res.render('projects/add', { project, errorModel });
+  } else {
+    project = validData;
   }
-  project = validData;
   // Regresando el objeto validado
   return res.render('projects/add', { project, errorModel });
 };
