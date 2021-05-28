@@ -34,19 +34,12 @@ const addPost = async (req, res) => {
   } else {
     // Creando un documento con los datos provistos
     // del formulario
-    let projectModel = new ProjectModel(validData);
     try {
-      // Salvando el documento, dado que la operación
-      // salvar es una función asincrona
-      // puede ser manejada mediante un callback
-      // o mediante un async
-      projectModel = await projectModel.save();
+      const projectDoc = await ProjectModel.create(validData);
+      return res.json(projectDoc);
     } catch (error) {
       return res.status(404).json({ error });
     }
-
-    return res.json(projectModel);
-
     project = validData;
   }
   // Regresando el objeto validado
