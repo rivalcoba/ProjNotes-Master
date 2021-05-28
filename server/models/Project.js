@@ -6,11 +6,11 @@ const { Schema } = mongoose;
 
 // 3 Creando el Schema
 const ProjectSchema = new Schema({
-  title: {
+  name: {
     type: String,
     required: true,
   },
-  details: {
+  description: {
     type: String,
     required: true,
   },

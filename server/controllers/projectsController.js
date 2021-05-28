@@ -1,5 +1,5 @@
 // Importando el modelo
-// import ProjectModel from '@s-models/Project';
+import ProjectModel from '@s-models/Project';
 
 // "projects/"
 const index = (req, res) => {
@@ -13,7 +13,7 @@ const add = (req, res) => {
   res.render('projects/add');
 };
 // POST "projects/add"
-const addPost = (req, res) => {
+const addPost = async (req, res) => {
   // Destructuring to get working Objects
   const { validData, errorData } = req;
   let project = {};
@@ -32,6 +32,21 @@ const addPost = (req, res) => {
     }, {});
     // return res.render('projects/add', { project, errorModel });
   } else {
+    // Creando un documento con los datos provistos
+    // del formulario
+    let projectModel = new ProjectModel(validData);
+    try {
+      // Salvando el documento, dado que la operación
+      // salvar es una función asincrona
+      // puede ser manejada mediante un callback
+      // o mediante un async
+      projectModel = await projectModel.save();
+    } catch (error) {
+      return res.status(404).json({ error });
+    }
+
+    return res.json(projectModel);
+
     project = validData;
   }
   // Regresando el objeto validado
