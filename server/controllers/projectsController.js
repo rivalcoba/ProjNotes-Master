@@ -1,9 +1,14 @@
 // Importando el modelo
 import ProjectModel from '@s-models/Project';
+// Importando Logger
+import winston from '@s-config/winston';
 
-// "projects/"
-const index = (req, res) => {
-  res.send('Listando Proyectos');
+// GET "projects/"
+const index = async (req, res) => {
+  // Usando el modelo para ejecutar
+  // una consulta a la coleccion proyectos
+  const projectsDocs = await ProjectModel.find().lean().exec();
+  res.render('projects/index', { projectsDocs });
 };
 // "projects/add"
 const add = (req, res) => {
@@ -30,20 +35,18 @@ const addPost = async (req, res) => {
       newVal[`${currVal.path}Error`] = currVal.message;
       return newVal;
     }, {});
-    // return res.render('projects/add', { project, errorModel });
-  } else {
-    // Creando un documento con los datos provistos
-    // del formulario
-    try {
-      const projectDoc = await ProjectModel.create(validData);
-      return res.json(projectDoc);
-    } catch (error) {
-      return res.status(404).json({ error });
-    }
-    project = validData;
+    return res.render('projects/add', { project, errorModel });
   }
-  // Regresando el objeto validado
-  return res.render('projects/add', { project, errorModel });
+  // Creando un documento con los datos provistos
+  // del formulario
+  try {
+    const projectDoc = await ProjectModel.create(validData);
+    winston.info(`Projecto Creado: ${JSON.stringify(projectDoc)}`);
+    // Redireccionado
+    return res.redirect('/projects');
+  } catch (error) {
+    return res.status(404).json({ error });
+  }
 };
 
 // Exportando el Controlador

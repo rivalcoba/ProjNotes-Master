@@ -6,11 +6,12 @@
     "start": "cross-env NODE_ENV=production node ./dist/bin/www",
     "w:d": "cross-env NODE_ENV=development babel-watch --watch ./server/views ./server/bin/www",
     "w:s": "cross-env NODE_ENV=development webpack serve --config ./webpack.dev.config.js --mode development",
-    "cleans": "cross-env rm -rf dist",
-    "cleanc": "cross-env rm -rf public/js && rm -rf public/styles",
+    "cleans": "cross-env rimraf dist",
+    "cleanc": "cross-env rimraf public/js && rimraf public/styles",
     "b:s": "cross-env npm run cleans && babel ./server --out-dir dist --copy-files",
     "b:c": "cross-env npm run cleanc && webpack --config ./webpack.config.js --mode production",
-    "build": "cross-env npm run b:c && npm run b:s"
+    "build": "cross-env npm run b:c && npm run b:s",
+    "clnlogs": "cross-env rimraf server/logs/*.log"
   },
   "dependencies": {
     "app-root-path": "^3.0.0",
@@ -23,6 +24,7 @@
     "http-errors": "~1.6.3",
     "mongoose": "^5.12.5",
     "morgan": "~1.9.1",
+    "rimraf": "^2.7.1",
     "webpack": "^5.24.0",
     "webpack-dev-middleware": "^4.1.0",
     "webpack-hot-middleware": "^2.25.0",
