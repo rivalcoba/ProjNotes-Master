@@ -3,20 +3,30 @@ import ProjectModel from '@s-models/Project';
 // Importando Logger
 import winston from '@s-config/winston';
 
+/* GET SECTION */
+
 // GET "projects/"
 const index = async (req, res) => {
   // Usando el modelo para ejecutar
   // una consulta a la coleccion proyectos
   const projectsDocs = await ProjectModel.find().lean().exec();
-  res.render('projects/index', { projectsDocs });
+  res.render('projects/ProjectIndex', { projectsDocs });
 };
-// "projects/add"
+// GET "projects/add"
 const add = (req, res) => {
   // Mandando a construir la vista
   // Del formulario para agregar
   // un proyecto
   res.render('projects/add');
 };
+
+// GET "/projects/edit/<id>"
+// ReF: https://stackoverflow.com/questions/46060721/how-do-you-document-route-params-with-jsdoc
+const edit = (req, res) => {
+  res.render('projects/ProjectEditForm');
+};
+
+/* POST SECTION */
 // POST "projects/add"
 const addPost = async (req, res) => {
   // Destructuring to get working Objects
@@ -53,5 +63,6 @@ const addPost = async (req, res) => {
 export default {
   index,
   add,
+  edit,
   addPost,
 };

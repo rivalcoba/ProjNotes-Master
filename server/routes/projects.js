@@ -10,11 +10,16 @@ import projectValidator from '@server/validators/projects';
 // Creating an instance from the express router
 const router = new Router();
 
+/* GET SECTION */
+
 // "/projects" "/projects/index"
 router.get(['/', '/index'], projectsController.index);
 
 // "/projects/add"
 router.get('/add', projectsController.add);
+
+// "/projects/edit/<id>"
+router.get('/edit/:id', projectsController.edit);
 
 // POST "/projects/add"
 // Se realiza validación
