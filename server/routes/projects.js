@@ -21,6 +21,8 @@ router.get('/add', projectsController.add);
 // "/projects/edit/<id>"
 router.get('/edit/:id', projectsController.edit);
 
+/* POST SECTION */
+
 // POST "/projects/add"
 // Se realiza validación
 router.post(
@@ -31,6 +33,11 @@ router.post(
   }),
   projectsController.addPost,
 );
+
+/* PUT SECTION */
+
+// PUT "/projects/edit/<id>"
+router.put('/edit/:id', projectsController.editPut);
 
 // Exporting Router
 export default router;

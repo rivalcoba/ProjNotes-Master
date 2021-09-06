@@ -29,6 +29,7 @@ const edit = async (req, res) => {
 };
 
 /* POST SECTION */
+
 // POST "projects/add"
 const addPost = async (req, res) => {
   // Destructuring to get working Objects
@@ -61,10 +62,18 @@ const addPost = async (req, res) => {
   }
 };
 
+/* PUT SECTION */
+
+// PUT "/projects/edit/<id>"
+const editPut = (req, res) => {
+  res.send('PUT EDIT PROJECTS');
+};
+
 // Exportando el Controlador
 export default {
   index,
   add,
   edit,
+  editPut,
   addPost,
 };

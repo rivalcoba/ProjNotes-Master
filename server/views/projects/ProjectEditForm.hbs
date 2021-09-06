@@ -4,7 +4,7 @@
       <div class="card-image">
         <img src="/img/blueprt.jpg" />
         <span class="card-title">
-          Agregar Proyecto
+          Editar Proyecto
         </span>
       </div>
       <form autocomplete="off" action="/projects/add" method="POST">
@@ -19,7 +19,7 @@
               name="name"
               type="text"
               class="validate"
-              value="{{project.name}}"
+              value="{{name}}"
               required
             />
             <span class="helper-text" 
@@ -33,7 +33,7 @@
             <label for="project_description">
               Descripción del Proyecto
             </label>
-            <textarea required id="project_description" name="description" class="materialize-textarea validate">{{project.description}}</textarea>
+            <textarea required id="project_description" name="description" class="materialize-textarea validate">{{description}}</textarea>
             <span class="helper-text" 
             data-error="Debe ingresar una descripción." 
             data-success="Correcto"></span>
@@ -44,7 +44,7 @@
         </div>
         <div class="card-action">
           <button id="submit" type="submit" class="blue darken-3 waves-effect waves-light btn">
-            <i class="material-icons left">note_add</i>Agregar
+            <i class="material-icons left">save</i>Guardar
           </button>
         </div>
       </form>
