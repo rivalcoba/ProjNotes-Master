@@ -22,8 +22,10 @@ const add = (req, res) => {
 
 // GET "/projects/edit/<id>"
 // ReF: https://stackoverflow.com/questions/46060721/how-do-you-document-route-params-with-jsdoc
-const edit = (req, res) => {
-  res.render('projects/ProjectEditForm');
+const edit = async (req, res) => {
+  const { id } = req.params;
+  const project = await ProjectModel.findOne({ _id: id }).lean().exec();
+  res.render('projects/ProjectEditForm', project);
 };
 
 /* POST SECTION */
