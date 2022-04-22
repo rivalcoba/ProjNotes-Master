@@ -7,7 +7,7 @@
           Editar Proyecto
         </span>
       </div>
-      <form autocomplete="off" action="/projects/add" method="POST">
+      <form autocomplete="off" action="/projects/edit/{{_id}}?_method=PUT" method="POST">
         <div class="card-content">
           <div class="input-field">
             <label for="project_name">

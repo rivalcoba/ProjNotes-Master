@@ -1,6 +1,8 @@
 /* eslint-disable import/no-unresolved */
 import createError from 'http-errors';
 import express from 'express';
+// Override de Verbos de petición
+import methodOverride from 'method-override';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 // Importando Winston
@@ -59,6 +61,9 @@ app.use(morgan('dev', { stream: winston.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// Agregando method-override middleware
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, '../public')));
 
 // Agregando rutas

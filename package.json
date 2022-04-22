@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./dist/bin/www",
-    "w:d": "cross-env NODE_ENV=development babel-watch --watch ./server/views ./server/bin/www",
+    "dev": "cross-env NODE_ENV=development babel-watch --watch ./server/views ./server/bin/www",
     "w:s": "cross-env NODE_ENV=development webpack serve --config ./webpack.dev.config.js --mode development",
     "cleans": "cross-env rimraf dist",
     "cleanc": "cross-env rimraf public/js && rimraf public/styles",

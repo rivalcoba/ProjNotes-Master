@@ -65,8 +65,21 @@ const addPost = async (req, res) => {
 /* PUT SECTION */
 
 // PUT "/projects/edit/<id>"
-const editPut = (req, res) => {
-  res.send('PUT EDIT PROJECTS');
+const editPut = async (req, res) => {
+  // 1 Extrayendo el parametro id
+  const { id } = req.params;
+  // 2 Extrayendo la colección del boyd
+  // const { name, description } = req.body;
+  // const project = {name, description};
+  
+  try {
+    // 2 Busncado en la base de datos el documento
+    // con ese id
+    let projectDocument = await ProjectModel.findOne({ _id: id });
+    // 
+  } catch (error) {
+    console.log("Done");
+  }
 };
 
 // Exportando el Controlador
