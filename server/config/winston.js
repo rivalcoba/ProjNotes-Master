@@ -17,13 +17,13 @@ winston.addColors(colors);
 // Creando formato personalizado para la consola
 const myFormat = format.combine(
   format.colorize({ all: true }),
-  format.timestamp(),
+  format.timestamp({ format: 'DD-MM-YYYY HH:mm:ss' }),
   format.printf((info) => `${info.timestamp} ${info.level}: ${info.message}`),
 );
 
 const myFileFormat = format.combine(
   format.uncolorize(),
-  format.timestamp(),
+  format.timestamp({ format: 'DD-MM-YYYY HH:mm:ss' }),
   format.json(),
 );
 
