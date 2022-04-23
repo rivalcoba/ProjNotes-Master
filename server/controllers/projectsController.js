@@ -68,17 +68,23 @@ const addPost = async (req, res) => {
 const editPut = async (req, res) => {
   // 1 Extrayendo el parametro id
   const { id } = req.params;
-  // 2 Extrayendo la colección del boyd
-  // const { name, description } = req.body;
-  // const project = {name, description};
-  
+  // 2 Extrayendo la colección del body
+  const { name, description } = req.body;
   try {
-    // 2 Busncado en la base de datos el documento
+    // 3 Buscando en la base de datos el documento
     // con ese id
     let projectDocument = await ProjectModel.findOne({ _id: id });
-    // 
+    // 4 El siguiente paso será actualizar el documento localizado
+    projectDocument.name = name;
+    projectDocument.description = description;
+    // 5 Se salva el documento recien actualizado
+    projectDocument = await projectDocument.save();
+    // 5.1 Se registra en el log el documento recien actualizado
+    winston.info(`Proyecto Actualizado: ${JSON.stringify(projectDocument)}`);
+    // 6 Se redirecciona al listado de proyectos
+    res.redirect('/projects');
   } catch (error) {
-    console.log("Done");
+    winston.error(`An error was originated: ${error.message}`);
   }
 };
 
