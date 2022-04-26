@@ -3,7 +3,9 @@ import ProjectModel from '@s-models/Project';
 // Importando Logger
 import winston from '@s-config/winston';
 
+// 🚩🚩🚩🚩🚩🚩
 /* GET SECTION */
+// 🚩🚩🚩🚩🚩🚩
 
 // GET "projects/"
 const index = async (req, res) => {
@@ -28,7 +30,9 @@ const edit = async (req, res) => {
   res.render('projects/ProjectEditForm', project);
 };
 
+// 🚩🚩🚩🚩🚩🚩
 /* POST SECTION */
+// 🚩🚩🚩🚩🚩🚩
 
 // POST "projects/add"
 const addPost = async (req, res) => {
@@ -62,7 +66,9 @@ const addPost = async (req, res) => {
   }
 };
 
+// 🚩🚩🚩🚩🚩🚩
 /* PUT SECTION */
+// 🚩🚩🚩🚩🚩🚩
 
 // PUT "/projects/edit/<id>"
 const editPut = async (req, res) => {
