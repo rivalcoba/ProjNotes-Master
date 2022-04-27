@@ -2,6 +2,7 @@
 import './stylesheets/style.css';
 // Importing script
 import addScripts from '@client/scripts/projects/add';
+import projectsIndexScripts from '@client/scripts/projects/index';
 
 /* Inicialización de scrips para Materilize Css */
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,4 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Scripts dedicados
 if (window.location.pathname === '/projects/add') {
   addScripts();
+}
+if (window.location.pathname === '/projects') {
+  projectsIndexScripts();
 }
