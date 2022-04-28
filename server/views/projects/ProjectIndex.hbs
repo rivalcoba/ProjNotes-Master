@@ -23,7 +23,7 @@
             </i>
             Edit Project
           </a>
-          <a id="deleteAnchor" href="javascript:;">
+          <a id="deleteAnchor" href="javascript: submitform();">
             <i
               class="material-icons"
               style="display: inline-flex; vertical-align: top;"
@@ -32,9 +32,8 @@
             </i>
             Delete Project
           </a>
-          <form id="deleteForm" hidden action="/projects/delete/{{_id}}?_method=DELETE" method="post">
+          <form name="deleteProjectForm" hidden action="/projects/delete/{{_id}}?_method=DELETE" method="post">
             <input type="hidden" name="_method" value="DELETE">
-            <input type="submit" value="Delete Project">
           </form>
         </div>
       </div>

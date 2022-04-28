@@ -39,5 +39,8 @@ router.post(
 // PUT "/projects/edit/<id>"
 router.put('/edit/:id', projectsController.editPut);
 
+/* DELETE SECTION */
+router.delete('/delete/:id', projectsController.deleteProject);
+
 // Exporting Router
 export default router;

@@ -4,6 +4,7 @@ const deleteAchor = document.getElementById('deleteAnchor');
 // Manejadores
 const deleteProject = () => {
   console.log('Se manda a borrar proyecto');
+  document.forms.deleteProjectForm.submit();
   return false;
 };
 

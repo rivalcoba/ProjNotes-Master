@@ -94,6 +94,13 @@ const editPut = async (req, res) => {
   }
 };
 
+// 🚩🚩🚩🚩🚩🚩
+/* DELETE SECTION */
+// 🚩🚩🚩🚩🚩🚩
+const deleteProject = async (req, res) => {
+  res.send('Deleting Project');
+};
+
 // Exportando el Controlador
 export default {
   index,
@@ -101,4 +108,5 @@ export default {
   edit,
   editPut,
   addPost,
+  deleteProject,
 };
