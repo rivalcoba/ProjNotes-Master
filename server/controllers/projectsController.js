@@ -98,7 +98,24 @@ const editPut = async (req, res) => {
 /* DELETE SECTION */
 // 🚩🚩🚩🚩🚩🚩
 const deleteProject = async (req, res) => {
-  res.send('Deleting Project');
+  // 1 Extrayendo el parametro id
+  const { id } = req.params;
+  try {
+    // 2 Usando el modelo para borrar el proyecto
+    const numberOfDeletedProjects = await ProjectModel.remove({ _id: id });
+
+    // 3 Se registra resultado
+    winston.info(
+      `Projecto Eliminado: id: ${id}, elementos borrados: ${numberOfDeletedProjects}`,
+    );
+
+    // 4 Redireccionamos a la lista de Proyectos
+    res.redirect('/projects');
+  } catch (error) {
+    // En caso de haber error se notifica
+    winston.error(`Error al borrar proyecto: ${error.message}`);
+    res.send(`Lo sentimos hubo un error al borrar el proyecto.`);
+  }
 };
 
 // Exportando el Controlador
