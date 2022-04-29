@@ -1,13 +1,8 @@
-// Referencias
-const deleteAchor = document.getElementById('deleteAnchor');
-
-// Manejadores
-const deleteProject = () => {
-  console.log('Se manda a borrar proyecto');
-  document.forms.deleteProjectForm.submit();
-  return false;
-};
-
+// Submit Programatically
 export default () => {
-  deleteAchor.addEventListener('click', deleteProject);
+  window.submitForm = (id) => {
+    const formName = `form${id}`;
+    document.forms[formName].submit();
+    return false;
+  };
 };
