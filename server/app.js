@@ -13,6 +13,8 @@ import morgan from 'morgan';
 import router from '@routes/router';
 // Import config
 import configTemplateEngine from '@s-config/template-engine.js';
+// Importando configurador de manejo de sesiones
+import configSession from '@s-config/configSession.js';
 // Webpack modules
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -64,6 +66,11 @@ app.use(cookieParser());
 // Agregando method-override middleware
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
+
+// Habilitando manejo de sesiones
+configSession(app);
+
+// Configurando directorio de archivos estaticos
 app.use(express.static(path.join(__dirname, '../public')));
 
 // Agregando rutas
