@@ -10,7 +10,8 @@ const env = process.env.NODE_ENV || 'development';
 // Creando options object para el manejador de sesiones
 const options = {
   secret: 'awesome',
-  // TODO: Crear objeto de opciones
+  resave: true,
+  saveUninitialized: true,
 };
 
 export default (app) => {
