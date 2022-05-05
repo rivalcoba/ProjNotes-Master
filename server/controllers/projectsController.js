@@ -103,13 +103,13 @@ const deleteProject = async (req, res) => {
   try {
     // 2 Usando el modelo para borrar el proyecto
     const numberOfDeletedProjects = await ProjectModel.remove({ _id: id });
-
     // 3 Se registra resultado
     winston.info(
       `Projecto Eliminado: id: ${id}, elementos borrados: ${numberOfDeletedProjects}`,
     );
-
-    // 4 Redireccionamos a la lista de Proyectos
+    // 4.1 Registramos el mensaje de Flash
+    req.flash('successMessage', '🗑 Proyecto eliminado con exito');
+    // 4.2 Redireccionamos a la lista de Proyectos
     res.redirect('/projects');
   } catch (error) {
     // En caso de haber error se notifica

@@ -90,8 +90,8 @@ function onListening() {
 const mongooseOdm = new MongooseODM(configKeys.databaseUrl);
 (async () => {
   try {
-    const conectionResult = await mongooseOdm.connect();
-    if (conectionResult) {
+    const mongoClient = await mongooseOdm.connect();
+    if (mongoClient) {
       winston.info(
         'Connection to database engine has successfully established ✅',
       );

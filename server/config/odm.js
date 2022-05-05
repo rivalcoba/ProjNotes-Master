@@ -17,8 +17,8 @@ class MongooseODM {
       mongoose.set('useCreateIndex', true);
       mongoose.set('useUnifiedTopology', true);
       winston.info(`Conectado DB a: ${this.url}`);
-      await mongoose.connect(this.url);
-      return true;
+      const m = await mongoose.connect(this.url);
+      return m.connection.getClient();
     } catch (error) {
       return false;
     }

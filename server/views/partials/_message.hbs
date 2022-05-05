@@ -1,0 +1,20 @@
+{{#if successMessage}}
+  <script>
+    M.toast({html: '{{successMessage}}', classes: 'success'})
+  </script>
+{{/if}}
+{{#if infoMessage}}
+  <script>
+    M.toast({html: '{{infoMessage}}', classes: 'info'})
+  </script>
+{{/if}}
+{{#if errorMessage}}
+  <script>
+    M.toast({html: '{{errorMessage}}', classes: 'error'})
+  </script>
+{{/if}}
+{{#if passportError}}
+  <script>
+    M.toast({html: '{{passportError}}', classes: 'error'})
+  </script>
+{{/if}}
