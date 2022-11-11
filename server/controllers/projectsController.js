@@ -108,7 +108,7 @@ const deleteProject = async (req, res) => {
       `Projecto Eliminado: id: ${id}, elementos borrados: ${numberOfDeletedProjects}`,
     );
     // 4.1 Registramos el mensaje de Flash
-    req.flash('successMessage', '🗑 Proyecto eliminado con exito');
+    req.flash('successMessage', 'Proyecto eliminado con exito');
     // 4.2 Redireccionamos a la lista de Proyectos
     res.redirect('/projects');
   } catch (error) {
