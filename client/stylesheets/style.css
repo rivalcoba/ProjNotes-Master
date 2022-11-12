@@ -3,6 +3,10 @@
   clear: both;
 }
 
+.logo{
+  width: 130px;
+  margin: auto;
+}
 /* .row{
   display: flex;
 } */
