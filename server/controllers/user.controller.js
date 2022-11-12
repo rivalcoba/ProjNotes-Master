@@ -8,7 +8,7 @@ const login = (req, res) => {
 
 const register = (req, res) => {
   winston.info('Se manda a generar vista "user/register"');
-  res.send('Register Page');
+  res.render('user/register');
 };
 
 export default { login, register };
