@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 
 // Strong password Regex
 // Reglas del password en Regex
-// const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+// export const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
 // Creando el esquema de validación
 const signUpSchema = Yup.object().shape({
