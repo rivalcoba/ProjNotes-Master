@@ -12,7 +12,12 @@ const register = (req, res) => {
 };
 // POST user/register
 const registerUser = (req, res) => {
-  res.send(req.body);
+  // Extrayendo datos de validación
+  const { validData, errorData } = req;
+  res.json({
+    validData,
+    errorData,
+  });
 };
 
 export default { login, register, registerUser };

@@ -7,13 +7,13 @@ import * as Yup from 'yup';
 
 // Creando el esquema de validación
 const signUpSchema = Yup.object().shape({
-  name: Yup.string().required('Se requiere ingresar nombre'),
-  lastName: Yup.string().required('Se requiere ingresar apellido'),
-  email: Yup.string().email().required('Se requiere ingresar un correo valido'),
+  firstName: Yup.string().required('Se requiere ingresar nombre'),
+  lastname: Yup.string().required('Se requiere ingresar apellido'),
+  mail: Yup.string().email().required('Se requiere ingresar un correo valido'),
   password: Yup.string()
     .min(6)
     .required('Se requiere ingresar password de al menos 6 caracteres'),
-  confirmationPassword: Yup.string().oneOf(
+  cpassword: Yup.string().oneOf(
     [Yup.ref('password')],
     'Los passwords ingresados no coinciden',
   ),
