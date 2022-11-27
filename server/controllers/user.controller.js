@@ -1,5 +1,7 @@
 // Importando Logger
 import winston from '@s-config/winston';
+// Importando el modelo usuario
+import User from '../models/User';
 
 const login = (req, res) => {
   winston.info('Se manda a generar vista "user/login"');
@@ -13,7 +15,7 @@ const register = (req, res) => {
 };
 
 // POST user/register
-const registerUser = (req, res) => {
+const registerUser = async (req, res) => {
   // Extrayendo datos de validación
   const { validData, errorData } = req;
   // Verificando si hay errores
@@ -24,10 +26,22 @@ const registerUser = (req, res) => {
   // Se crea al usuario
   // con los datos provistos por el formulario
   try {
-    return res.json({
-      validData,
-      errorData,
+    // Se extraen datos validados
+    // del usuario
+    const { firstName, lastname, mail, password } = validData;
+    // 1. Se crea un documento
+    // mediante el método "create" del modelo "User"
+    const user = await User.create({
+      firstName,
+      lastname,
+      mail,
+      password,
     });
+    // Se realiza una conversión a Json
+    // del objeto
+    const viewModel = user.toJSON();
+    // Retornado el objeto usuario
+    return res.status(200).json(viewModel);
   } catch (error) {
     return res.json(error);
   }
