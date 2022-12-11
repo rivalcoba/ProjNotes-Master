@@ -3,6 +3,10 @@ import mongoose from 'mongoose';
 import validator from 'validator';
 import bcrypt from 'bcryptjs';
 import rndString from 'randomstring';
+import winston from '@s-config/winston';
+import MailSender from '@server/services/mail';
+// Importando la URL de la base de datos del sistema
+import configKeys from '@server/config/configKeys';
 // 2 Destructuruzado el Schema
 const { Schema } = mongoose;
 // const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
@@ -60,6 +64,40 @@ UserSchema.pre('save', function presave(next) {
   this.createdAt = new Date();
   this.updatedAt = new Date();
   return next();
+});
+UserSchema.post('save', async function sendConfirmationMail() {
+  // Creating Mail options
+  const options = {
+    host: configKeys.smtpHost,
+    port: configKeys.smptPort,
+    secure: false,
+    auth: {
+      user: configKeys.mailUsername, // generated ethereal user
+      pass: configKeys.mailPassword, // generated ethereal password
+    },
+  };
+  const mailSender = new MailSender(options);
+  // Configuring mail data
+  mailSender.mail = {
+    from: 'jorge.rr@gamadero.tecnm.mx',
+    to: this.mail,
+    subject: 'Account confirmation',
+  };
+  try {
+    const info = await mailSender.sendMail(
+      'confirmation',
+      { user: this.firstName, lastname: this.lastname, mail: this.mail },
+      `Estimado ${this.firstName} ${this.lastname} 
+      hemos enviado un correo de confirmación a ${this.mail} 
+      favor de hacer clic en enlace de dicho correo`,
+    );
+    if (!info) return winston.info('😭 No se pudo enviar el correo');
+    winston.info('🎉 Correo enviado con exito');
+    return info;
+  } catch (error) {
+    winston.error(`🚨ERROR al enviar correo: ${error.message}`);
+    return null;
+  }
 });
 
 // Agregando metodos al esquema

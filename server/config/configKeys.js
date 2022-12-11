@@ -13,4 +13,8 @@ export default {
   port: process.env.PORT,
   ip: process.env.IP,
   databaseUrl: process.env.DATABASE_URL,
+  smtpHost: process.env.SMPT_HOST,
+  smptPort: process.env.SMTP_PORT,
+  mailUsername: process.env.MAIL_USERNAME,
+  mailPassword: process.env.MAIL_PASSWORD,
 };
