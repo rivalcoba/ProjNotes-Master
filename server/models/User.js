@@ -41,16 +41,22 @@ const UserSchema = new Schema({
   createdAt: Date,
   updatedAt: Date,
   emailConfirmedAt: Date,
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // HOOKS
 UserSchema.pre('save', function presave(next) {
   // Verificando si se ha modificado el password
+  // En el momento de salvar el documento
   if (this.isModified('password')) {
     // Encriptando el password
     this.password = this.hashPassword(this.password);
   }
   // Grabando fechas
+  this.emailConfirmationToken = this.generateConfirmationToken();
   this.createdAt = new Date();
   this.updatedAt = new Date();
   return next();
