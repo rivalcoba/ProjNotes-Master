@@ -86,7 +86,12 @@ UserSchema.post('save', async function sendConfirmationMail() {
   try {
     const info = await mailSender.sendMail(
       'confirmation',
-      { user: this.firstName, lastname: this.lastname, mail: this.mail },
+      {
+        user: this.firstName,
+        lastname: this.lastname,
+        mail: this.mail,
+        token: this.emailConfirmationToken,
+      },
       `Estimado ${this.firstName} ${this.lastname} 
       hemos enviado un correo de confirmación a ${this.mail} 
       favor de hacer clic en enlace de dicho correo`,
