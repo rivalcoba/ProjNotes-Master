@@ -12,5 +12,8 @@ router.get(['/', '/home'], homeController.index);
 // "/about"
 router.get('/about', homeController.about);
 
+// "/test"
+router.get('/test', homeController.test);
+
 // Exporting Router
 export default router;
