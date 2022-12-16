@@ -40,8 +40,9 @@ const registerUser = async (req, res) => {
     // Se realiza una conversión a Json
     // del objeto
     const viewModel = user.toJSON();
+    winston.info('Se manda a generar vista "user/registrationSuccessful"');
     // Retornado el objeto usuario
-    return res.status(200).json(viewModel);
+    return res.render('user/registrationSuccessful', viewModel);
   } catch (error) {
     return res.json(error);
   }
