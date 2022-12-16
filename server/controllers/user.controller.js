@@ -42,7 +42,10 @@ const registerUser = async (req, res) => {
     const viewModel = user.toJSON();
     winston.info('Se manda a generar vista "user/registrationSuccessful"');
     // Retornado el objeto usuario
-    return res.render('user/registrationSuccessful', viewModel);
+    return res.render('user/registrationSuccessful', {
+      ...viewModel,
+      backgroundColor: 'cyan darken-2',
+    });
   } catch (error) {
     return res.json(error);
   }
