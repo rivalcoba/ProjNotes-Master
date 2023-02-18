@@ -3,6 +3,7 @@ import winston from '@s-config/winston';
 // Importando el modelo usuario
 import User from '../models/User';
 
+// GET user/login
 const login = (req, res) => {
   winston.info('Se manda a generar vista "user/login"');
   res.render('user/login');
@@ -12,6 +13,15 @@ const login = (req, res) => {
 const register = (req, res) => {
   winston.info('Se manda a generar vista "user/register"');
   res.render('user/register');
+};
+
+// GET user/confirm/<token>
+const confirm = (req, res) => {
+  // Extrayendo datos de validación
+  const { validData, errorData } = req;
+  if (errorData) return res.json(errorData);
+  const { token } = validData;
+  return res.send(`Token valido: ${token}`);
 };
 
 // POST user/register
@@ -51,4 +61,9 @@ const registerUser = async (req, res) => {
   }
 };
 
-export default { login, register, registerUser };
+export default {
+  login,
+  register,
+  registerUser,
+  confirm,
+};

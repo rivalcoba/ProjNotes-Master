@@ -6,6 +6,7 @@ import userController from '../controllers/user.controller';
 import Validate from '../validators/validate';
 // Importamos el esquema de validacion
 import userValidator from '../validators/user.validator';
+import userTokenValidator from '../validators/user.token.validator';
 
 // Creating an instance from the express router
 const router = new Router();
@@ -15,6 +16,13 @@ router.get('/login', userController.login);
 
 // GET user/register
 router.get('/register', userController.register);
+
+// GET user/confirm/<token>
+router.get(
+  '/confirm/:token',
+  Validate(userTokenValidator.token),
+  userController.confirm,
+);
 
 // POST user/register
 router.post(
