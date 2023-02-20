@@ -16,12 +16,19 @@ const register = (req, res) => {
 };
 
 // GET user/confirm/<token>
-const confirm = (req, res) => {
+const confirm = async (req, res) => {
   // Extrayendo datos de validación
   const { validData, errorData } = req;
   if (errorData) return res.json(errorData);
   const { token } = validData;
-  return res.send(`Token valido: ${token}`);
+  // Buscando si existe un usuario con ese token
+  const user = await User.findByToken(token);
+  if (!user) {
+    return res.send('USER WITH TOKEN NOT FOUND');
+  }
+  // Activate user
+  await user.activate();
+  return res.send(`Usuario: ${user.firstName} Validado`);
 };
 
 // POST user/register

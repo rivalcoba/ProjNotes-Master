@@ -116,6 +116,19 @@ UserSchema.methods = {
   generateConfirmationToken() {
     return rndString.generate(64);
   },
+  // Metodo para activar el usuario
+  async activate() {
+    await this.updateOne({
+      emailConfirmationToken: null,
+      updatedAt: new Date(),
+      emailConfirmedAt: new Date(),
+    }).exec();
+  },
+};
+
+// Agregando métodos estáticos al esquema
+UserSchema.statics.findByToken = async function findByToken(token) {
+  return this.findOne({ emailConfirmationToken: token });
 };
 
 // 4 Se compila el modelo y se exporta
