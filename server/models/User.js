@@ -124,6 +124,10 @@ UserSchema.methods = {
       emailConfirmedAt: new Date(),
     }).exec();
   },
+  // Autentica con el password
+  authenticateUser(password) {
+    return bcrypt.compareSync(password, this.password);
+  },
 };
 
 // Agregando métodos estáticos al esquema
