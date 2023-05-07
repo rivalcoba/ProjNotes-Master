@@ -5,6 +5,8 @@ import express from 'express';
 import methodOverride from 'method-override';
 import path from 'path';
 import cookieParser from 'cookie-parser';
+// Importando Passport
+import passport from 'passport';
 // Importando Winston
 import winston from '@s-config/winston';
 // Importando Morgan
@@ -69,6 +71,12 @@ app.use(methodOverride('_method'));
 
 // Habilitando manejo de sesiones
 configSession(app);
+
+// Agrendo middleware de passport
+app.use(passport.initialize());
+// Agregando el middleware de passport
+// para el manejo de sesionres
+app.use(passport.session());
 
 // Configurando directorio de archivos estaticos
 app.use(express.static(path.join(__dirname, '../public')));
