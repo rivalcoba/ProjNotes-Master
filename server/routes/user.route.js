@@ -17,7 +17,7 @@ const router = new Router();
 router.get('/login', userController.login);
 
 // POST user/login
-router.post('/login', authLocal);
+router.post('/login', (req, res, next) => authLocal(req, res, next));
 
 // GET user/register
 router.get('/register', userController.register);

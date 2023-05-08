@@ -7,6 +7,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 // Importando Passport
 import passport from 'passport';
+
 // Importando Winston
 import winston from '@s-config/winston';
 // Importando Morgan
@@ -22,6 +23,10 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack.dev.config';
+
+import configPassport from './config/auth.config';
+
+configPassport(passport);
 
 const app = express();
 
