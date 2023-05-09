@@ -38,17 +38,28 @@ const localStrategy = new LocalStrategy(
       // En caso de no proveer el password correcto se regresa falso
       // Para ello se usa un método
       if (!user.authenticateUser(password)) {
-        return done(null, true, { message: 'Password o usuario incorrecto' });
+        return done(null, false, { message: 'Password o usuario incorrecto' });
       }
       // En caso de pasar las anteriores pruebas
-      // se regresa el usuario y un valor de verdadero
-      // que indica que se ha pasado la autenticación
-      return done(user, true);
+      // se regresa error nulo y como segundo
+      // argumento el usuario
+      return done(null, user);
     } catch (error) {
       return done(error, false);
     }
   },
 );
+
+// Esto genera y mantiene las cookies
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err, user) => {
+    done(err, user);
+  });
+});
 
 // Se registra la estrategia
 passport.use(localStrategy);
