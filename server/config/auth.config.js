@@ -14,7 +14,12 @@ export default function(passport){
   const localStrategy = new LocalStrategy(
     localOptions,
     (mail, password, done) => {
-      return done(null, {mail: "hola", "password": "123123", "id": "123123123"});
+      if(password === "123123"){
+        return done(null, {mail: "hola", "password": "123123", "id": "123123123"});
+      }
+      else{
+        return done(null, false, { message: 'Usuario o password incorrecto' });
+      }
     },
   );
 
