@@ -9,6 +9,17 @@ const login = (req, res) => {
   res.render('user/login');
 };
 
+// POST user/logout
+const logout = (req, res) => {
+  // Passport incrusta en la petición el 
+  // método logout
+  req.logout();
+  // Creamos mensaje de flash
+  req.flash('success_msg', 'Ha cerrado sesión correctamente');
+  // Redireccionamos al login
+  res.redirect('/user/login');
+};
+
 // GET user/register
 const register = (req, res) => {
   winston.info('Se manda a generar vista "user/register"');
@@ -70,6 +81,7 @@ const registerUser = async (req, res) => {
 
 export default {
   login,
+  logout,
   register,
   registerUser,
   confirm,

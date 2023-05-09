@@ -19,6 +19,9 @@ router.get('/login', userController.login);
 // POST user/login
 router.post('/login', authLocal);
 
+// GET user/logout
+router.get('/logout', userController.logout);
+
 // GET user/register
 router.get('/register', userController.register);
 
