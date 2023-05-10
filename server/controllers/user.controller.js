@@ -11,11 +11,11 @@ const login = (req, res) => {
 
 // POST user/logout
 const logout = (req, res) => {
-  // Passport incrusta en la petición el 
+  // Passport incrusta en la petición el
   // método logout
   req.logout();
   // Creamos mensaje de flash
-  req.flash('success_msg', 'Ha cerrado sesión correctamente');
+  req.flash('successMessage', 'Ha cerrado sesión correctamente');
   // Redireccionamos al login
   res.redirect('/user/login');
 };
