@@ -7,6 +7,10 @@
   width: 130px;
   margin: auto;
 }
+
+.dropdown-trigger {
+  width: 150px; /* adjust the width to your desired value */
+}
 /* .row{
   display: flex;
 } */
