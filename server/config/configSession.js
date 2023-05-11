@@ -32,7 +32,6 @@ export default (app) => {
     res.locals.infoMessage = req.flash('infoMessage');
     // Esta servira para passport
     res.locals.passportError = req.flash('error');
-    console.log(`🌟 ${res.locals.passportError} 🌟`);
     next();
   });
   // Retornando la aplicación
