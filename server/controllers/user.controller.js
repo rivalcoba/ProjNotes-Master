@@ -13,11 +13,15 @@ const login = (req, res) => {
 const logout = (req, res) => {
   // Passport incrusta en la petición el
   // método logout
-  req.logout();
-  // Creamos mensaje de flash
-  req.flash('successMessage', 'Ha cerrado sesión correctamente');
-  // Redireccionamos al login
-  res.redirect('/user/login');
+  req.logout((err) => {
+    if (err) {
+      return res.json(err);
+    }
+    // Creamos mensaje de flash
+    req.flash('successMessage', 'Ha cerrado sesión correctamente');
+    // Redireccionamos al login
+    return res.redirect('/user/login');
+  });
 };
 
 // GET user/register

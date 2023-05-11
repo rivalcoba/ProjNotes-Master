@@ -7,22 +7,16 @@
 {{/if}}
 {{#if infoMessage}}
   <script>
-    M.toast({html: '
-    {{infoMessage}}
-    ', classes: 'info'})
+    M.toast({html: '{{infoMessage}}', classes: 'info'})
   </script>
 {{/if}}
 {{#if errorMessage}}
   <script>
-    M.toast({html: '
-    {{errorMessage}}
-    ', classes: 'error'})
+    M.toast({html: '{{errorMessage}}', classes: 'error'})
   </script>
 {{/if}}
 {{#if passportError}}
   <script>
-    M.toast({html: '
-    {{passportError}}
-    ', classes: 'error'})
+    M.toast({html: '{{passportError}}', classes: 'error'})
   </script>
 {{/if}}
