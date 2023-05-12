@@ -81,6 +81,12 @@ app.use(passport.session());
 // Configurando directorio de archivos estaticos
 app.use(express.static(path.join(__dirname, '../public')));
 
+app.use((req, res, next) => {
+  // Esta servira para passport
+  res.locals.user = req.user?.toJSON();
+  next();
+});
+
 // Agregando rutas
 router.addRoutes(app);
 

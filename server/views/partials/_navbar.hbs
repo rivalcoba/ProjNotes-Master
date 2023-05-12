@@ -20,6 +20,7 @@
 </ul>
 
 <ul id="user-dropdown-menu" class="dropdown-content">
+  {{#unless user}}
   <li>
     <a href="/user/login">
       <i class="large material-icons" style="margin: 2px;">
@@ -29,6 +30,15 @@
     </a>
   </li>
   <li class="divider"></li>
+    <li>
+    <a href="/user/register">
+      <i class="large material-icons" style="margin: 2px;">
+        person_add
+      </i>
+      Registrarse
+    </a>
+  </li>
+  {{else}}
   <li>
     <a href="/user/logout">
       <i class="large material-icons" style="margin: 2px;">
@@ -37,15 +47,9 @@
       Cerrar sesion
     </a>
   </li>
-  <li>
-    <a href="/user/register">
-      <i class="large material-icons" style="margin: 2px;">
-        person_add
-      </i>
-      Registrarse
-    </a>
-  </li>
+  {{/unless}}
 </ul>
+<!-- Inicia barra de navegación -->
 <nav class="teal darken-4">
   <div class="container">
     <div class="nav-wrapper">
@@ -104,6 +108,7 @@
             Inicio
           </a>
         </li>
+        <li class="divider"></li>
         <li>
           <a href="/projects">
             <i class="large material-icons left">
@@ -120,20 +125,14 @@
             Crear Proyecto
           </a>
         </li>
+        <li class="divider"></li>
+        {{#unless user}}
         <li>
           <a href="/user/login">
             <i class="material-icons left">
               login
             </i>
             Ingresar
-          </a>
-        </li>
-        <li>
-          <a href="/user/logout">
-            <i class="material-icons left">
-              logout
-            </i>
-            Cerrar Sesión
           </a>
         </li>
         <li>
@@ -144,6 +143,16 @@
             Registrarse
           </a>
         </li>
+        {{else}}
+        <li>
+          <a href="/user/logout">
+            <i class="material-icons left">
+              logout
+            </i>
+            Cerrar Sesión
+          </a>
+        </li>
+        {{/unless}}
         <li class="divider"></li>
         <li>
           <a href="/about">
